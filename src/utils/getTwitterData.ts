@@ -1,6 +1,8 @@
 import dotenv from 'dotenv'
 import axios from 'axios'
 
+import type { FullUser } from 'twitter-d' // eslint-disable-line node/no-unpublished-import
+
 dotenv.config()
 const userShowEndoPoint = 'https://api.twitter.com/1.1/users/show.json'
 
@@ -26,7 +28,7 @@ const requestTwitterData = <T>(id: string): Promise<T> => {
   })
 }
 
-export async function getTwitterData<T>({ id }: { id: string }): Promise<T> {
-  const result = await requestTwitterData<T>(id)
+export async function getTwitterData({ id }: { id: string }): Promise<FullUser> {
+  const result = await requestTwitterData<FullUser>(id)
   return result
 }

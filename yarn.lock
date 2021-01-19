@@ -165,6 +165,11 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@types/image-to-base64@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/image-to-base64/-/image-to-base64-2.1.0.tgz#8c77b09b7988df3a9a2a4278bbcc27efabbec379"
+  integrity sha512-UgmqJVJyPIkzzI23TWqLc9iO+hZTzNoVD0rEf+I70FeKtcxxvLIlKJ5CrejkxkvDc/8/lk9yswSYZoAv8eyOYQ==
+
 "@types/json-schema@^7.0.3":
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
@@ -1477,6 +1482,13 @@ ignore@^5.0.5, ignore@^5.1.1, ignore@^5.1.4:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
+image-to-base64@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/image-to-base64/-/image-to-base64-2.1.1.tgz#58c16f88494dfd3e84953cf845a5929be04fbdb5"
+  integrity sha512-G8EZaxl8dmYUXCmaC/1W4oqwj+yiY+qhF9A81TbdOtxdK9BAN3oV440Jofexp4J2oRsbHIUJtl3rlDqdjmiZOQ==
+  dependencies:
+    node-fetch "^2.6.0"
+
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
@@ -1939,6 +1951,11 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
+
+node-fetch@^2.6.0:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4, normalize-package-data@^2.5.0:
   version "2.5.0"
