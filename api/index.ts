@@ -3,9 +3,19 @@ import { NowRequest, NowResponse } from '@vercel/node' // eslint-disable-line no
 import { createCard } from '../src/utils/createCard'
 import { getTwitterData } from '../src/utils/getTwitterData'
 
-export default async (req: NowRequest, res: NowResponse) => {
-  const result = await getTwitterData(req.query as { id: string })
+type colors = 'default' | 'yellow' | 'pink' | 'purple' | 'orange' | 'green'
 
-  res.setHeader('Content-Type', 'image/svg+xml')
-  res.send(await createCard(result))
+export default async (
+  req: NowRequest & { query: { id: string; color?: colors } },
+  res: NowResponse
+) => {
+  try {
+    const result = await getTwitterData(req.query)
+    const svgImage = await createCard(result, req.query.color || 'default')
+
+    res.setHeader('Content-Type', 'image/svg+xml')
+    res.send(svgImage)
+  } catch (_err) {
+    res.send('Sory... Could not resolve.')
+  }
 }

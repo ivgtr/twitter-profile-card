@@ -3,6 +3,7 @@
     "target": "es2017",
     "module": "commonjs",
     "lib": ["esnext", "dom", "dom.iterable"],
+    "jsx": "react",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
