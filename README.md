@@ -34,13 +34,15 @@ Use ?color=COLOR_NAME parameter like so :
 
 <img width="600" alt="twitter-profile-cards" src="https://user-images.githubusercontent.com/43836584/105163736-a39a1a80-5b57-11eb-88e8-533724038390.png">
 
-Currently, the color changes only slightly.
+##### Currently, the color changes only slightly.
 
 I'm not a designer so I'm hoping some of you can help me out.
 
 ## Deploy on your own Vercel instance
 
 Due to the API restrictions of Twitter, you need to deploy to Vercel yourself.
+
+If there are few users, there is no need for you to do anything.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/ivgtr/twitter-profile-card)
 
