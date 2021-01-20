@@ -14,6 +14,7 @@ export default async (
     const svgImage = await createCard(result, req.query.color || 'default')
 
     res.setHeader('Content-Type', 'image/svg+xml')
+    res.setHeader('Cache-Control', `public, max-age=${60 * 60 * 2}`)
     res.send(svgImage)
   } catch (_err) {
     res.send('Sory... Could not resolve.')
