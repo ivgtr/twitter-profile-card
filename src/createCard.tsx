@@ -1,7 +1,8 @@
-import type { FullUser } from 'twitter-d' // eslint-disable-line node/no-unpublished-import
 import chrome from 'chrome-aws-lambda'
 import puppeteer from 'puppeteer-core'
 import handlebars from 'handlebars'
+
+import type { FullUser } from 'twitter-d' // eslint-disable-line node/no-unpublished-import
 
 const getLocation = (location?: string | null) => {
   return location ? `<p style="font-size: 1.3rem;margin: 0;">location: ${location}</p>` : undefined

@@ -1,7 +1,7 @@
-import { NowRequest, NowResponse } from '@vercel/node' // eslint-disable-line node/no-unpublished-import
+import type { NowRequest, NowResponse } from '@vercel/node' // eslint-disable-line node/no-unpublished-import
 
-import { createCard } from '../src/utils/createCard'
-import { getTwitterData } from '../src/utils/getTwitterData'
+import { createCard } from '../src/createCard'
+import { getTwitterData } from '../src/getTwitterData'
 
 type colors = 'default' | 'yellow' | 'pink' | 'purple' | 'orange' | 'green'
 
