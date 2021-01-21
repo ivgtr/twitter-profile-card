@@ -11,12 +11,14 @@ export default async (
 ) => {
   try {
     const result = await getTwitterData(req.query)
+
     const svgImage = await createCard(result, req.query.color || 'default')
 
     res.setHeader('Content-Type', 'image/svg+xml')
     res.setHeader('Cache-Control', `public, max-age=${60 * 60 * 2}`)
     res.send(svgImage)
   } catch (_err) {
+    console.log(_err)
     res.send('Sory... Could not resolve.')
   }
 }
