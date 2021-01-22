@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server'
 
 import type { FullUser } from 'twitter-d' // eslint-disable-line node/no-unpublished-import
 
-import createElement from './createElement'
+import { createElement } from './createElement'
 
 export async function createCard(tweetData: FullUser, color: colors) {
   const height = 288

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import type { FullUser } from 'twitter-d' // eslint-disable-line node/no-unpublished-import
 
-export default function createElement(tweetData: FullUser, selectColor: colors) {
+export function createElement(tweetData: FullUser, selectColor: colors) {
   const profileIcon = tweetData.profile_image_url_https
   const profileBanner = tweetData.profile_banner_url
   const color: { [key: string]: string } = {
