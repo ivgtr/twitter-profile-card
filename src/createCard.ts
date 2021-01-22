@@ -1,6 +1,5 @@
 import chrome from 'chrome-aws-lambda'
 import puppeteer from 'puppeteer-core'
-import handlebars from 'handlebars'
 import { renderToString } from 'react-dom/server'
 
 import type { FullUser } from 'twitter-d' // eslint-disable-line node/no-unpublished-import
@@ -38,7 +37,9 @@ export async function createCard(tweetData: FullUser, color: colors) {
 
   const element = createElement(tweetData, color)
 
-  const html = handlebars.compile(`<html>
+  const page = await browser.newPage()
+  await page.setContent(
+    `<html>
         <head>
           <style>
             body {
@@ -49,10 +50,8 @@ export async function createCard(tweetData: FullUser, color: colors) {
         </head>
         <body>${renderToString(element)}</body>
       </html>
-      `)(null)
-
-  const page = await browser.newPage()
-  await page.setContent(html)
+    `
+  )
 
   const image = await page.$('body')
 

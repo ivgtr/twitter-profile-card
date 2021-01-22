@@ -24,7 +24,6 @@
     "axios": "^0.21.1",
     "chrome-aws-lambda": "^5.5.0",
     "dotenv": "^8.2.0",
-    "handlebars": "^4.7.6",
     "puppeteer-core": "5.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
