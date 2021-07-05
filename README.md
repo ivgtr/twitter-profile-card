@@ -5,10 +5,6 @@
 </div>
 
 ---
-> 💳✨ inspire : 
->- https://github.com/anuraghazra/github-readme-stats
->- https://github.com/SnO2WMaN/last.fm-badge
-
 
 ## Setup
 

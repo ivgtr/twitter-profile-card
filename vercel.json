@@ -3,7 +3,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "https://github.com/ivgtr/twitter-profile-card"
+      "destination": "/api"
     }
   ]
 }

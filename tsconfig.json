@@ -2,8 +2,6 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
-    "lib": ["esnext", "dom", "dom.iterable"],
-    "jsx": "react",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,11 +14,9 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "rootDir": "./src",
-    "baseUrl": "./",
-    "outDir": "./dist",
+    "noEmitOnError": true,
     "resolveJsonModule": true
   },
-  "include": ["src"],
+  "include": ["./api/**/*"],
   "exclude": ["node_modules"]
 }
