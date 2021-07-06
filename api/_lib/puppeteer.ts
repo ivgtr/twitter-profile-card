@@ -3,16 +3,6 @@ import puppeteer from "puppeteer-core";
 import { Options } from "./parser";
 
 export const getScreenshot = async (html: string, options: Options) => {
-  const height = 288;
-  const width = height * Math.sqrt(2);
-
-  await chrome.font(
-    "https://rawcdn.githack.com/googlefonts/noto-cjk/be6c059ac1587e556e2412b27f5155c8eb3ddbe6/NotoSansCJKjp-Regular.otf"
-  );
-  await chrome.font(
-    "https://rawcdn.githack.com/googlefonts/noto-fonts/ea9154f9a0947972baa772bc6744f1ec50007575/hinted/NotoSans/NotoSans-Regular.ttf"
-  );
-
   const browser = await puppeteer.launch(
     process.env.AWS_REGION
       ? {
@@ -34,10 +24,10 @@ export const getScreenshot = async (html: string, options: Options) => {
   );
 
   const page = await browser.newPage();
-  await page.setViewport({ width: Math.floor(width), height });
+  await page.setViewport({ width: 1920, height: 1080 });
   await page.setContent(html, { waitUntil: "networkidle0" });
-  const body = await page.$("body");
-  const screenshot = await body?.screenshot({ type: options.type });
+  const root = await page.$("#root");
+  const screenshot = await root?.screenshot({ type: options.type });
   if (!screenshot) throw new Error();
 
   await browser.close();

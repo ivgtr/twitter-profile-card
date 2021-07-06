@@ -1,8 +1,6 @@
-export default function (
-  className: string,
-  attributes: { [attr: string]: string },
-  ...children: string[]
-): string {
+type CSSAttributes = { [attr: string]: string };
+
+function style(className: string, attributes: CSSAttributes, ...children: string[]): string {
   const camelToKebab = (str: string) =>
     str.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
 
@@ -15,3 +13,5 @@ export default function (
 
   return `${className} {${attrs}${close}}`;
 }
+
+export default style;

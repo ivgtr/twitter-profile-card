@@ -22,8 +22,12 @@ export default async (
       // "Cache-Control": "max-age=86400",
     });
     response.end(screenshot);
-  } catch (e) {
-    console.log(e);
+    return;
+    // response.writeHead(200, {
+    //   "Content-Type": `text/html`,
+    // });
+    // response.end(html);
+  } catch {
     response.writeHead(404);
     response.end();
     return;
