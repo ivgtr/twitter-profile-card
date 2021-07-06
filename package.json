@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivgtr/twitter-profile-card.git"
+  },
+  "homepage": "https://github.com/ivgtr/twitter-profile-card#readme",
+  "bugs": {
+    "url": "https://github.com/ivgtr/twitter-profile-card/issues"
+  },
   "engines": {
     "node": "14.x"
   },
   "scripts": {
-    "now": "vercel dev",
+    "dev:now": "vercel dev",
     "lint": "eslint **/*.ts"
   },
   "devDependencies": {
