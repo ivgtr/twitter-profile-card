@@ -1,24 +1,35 @@
-import type { NowRequest, NowResponse } from '@vercel/node' // eslint-disable-line node/no-unpublished-import
-
-import { createCard } from '../src/createCard'
-import { getTwitterData } from '../src/getTwitterData'
-
-type colors = 'default' | 'yellow' | 'pink' | 'purple' | 'orange' | 'green'
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { createElement } from "./_lib/createElement";
+import { requestTwitter } from "./_lib/getTwitterData";
+import { Options, parseRequest } from "./_lib/parser";
+import { getScreenshot } from "./_lib/puppeteer";
 
 export default async (
-  req: NowRequest & { query: { id: string; color?: colors } },
-  res: NowResponse
-) => {
+  request: VercelRequest & { query: Options },
+  response: VercelResponse
+): Promise<void> => {
   try {
-    const result = await getTwitterData(req.query)
+    const options = parseRequest(request.query);
+    const personalData = await requestTwitter(options.id);
 
-    const svgImage = await createCard(result, req.query.color || 'default')
+    const html = await createElement(personalData, options);
+    const screenshot = await getScreenshot(html, options);
+    if (!screenshot) throw new Error("Not Get Screenshot");
 
-    res.setHeader('Content-Type', 'image/svg+xml')
-    res.setHeader('Cache-Control', `public, max-age=${60 * 60 * 12}`)
-    res.send(svgImage)
-  } catch (_err) {
-    console.log(_err)
-    res.send('Sory... Could not resolve.')
+    response.writeHead(200, {
+      "Content-Type": `image/${options.type}`,
+      "Content-Length": screenshot.length,
+      // "Cache-Control": "max-age=86400",
+    });
+    response.end(screenshot);
+    return;
+    // response.writeHead(200, {
+    //   "Content-Type": `text/html`,
+    // });
+    // response.end(html);
+  } catch {
+    response.writeHead(404);
+    response.end();
+    return;
   }
-}
+};
