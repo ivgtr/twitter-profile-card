@@ -19,8 +19,8 @@
     "lint": "eslint **/*.ts"
   },
   "devDependencies": {
-    "@types/node": "^16.0.0",
-    "@types/puppeteer-core": "^5.4.0",
+    "@types/node": "16.0.0",
+    "@types/puppeteer-core": "5.4.0",
     "@vercel/node": "^1.11.1",
     "eslint": "^7.30.0",
     "eslint-config-sumikko": "^1.2.1",
