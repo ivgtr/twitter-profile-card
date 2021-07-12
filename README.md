@@ -13,7 +13,7 @@ Copy-paste this into your markdown content, and that's it. Simple!
 Change the ?id= value to your Twitter's screen_name.
 
 ```md
-[![Twitter Profile](https://twitter-profile-card.vercel.app/api?id=twitter)](https://twitter.com/twitter)
+[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=twitter)](https://twitter.com/twitter)
 ```
 
 ## Color themes
@@ -21,12 +21,12 @@ Change the ?id= value to your Twitter's screen_name.
 Use ?color=COLOR_NAME parameter like so :
 
 ```md
-[![Twitter Profile](https://twitter-profile-card.vercel.app/api?id=twitter&color=pink)](https://twitter.com/twitter)
+[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=twitter&color=pink)](https://twitter.com/twitter)
 ```
 
 ##### All inbuilt color themes :
 
-`default`, `yellow`, `pink`. `purple`, `orange`, `green`, `gradient`
+`blue`, `yellow`, `pink`. `purple`, `orange`, `green`, `white`, `gradient`
 
 <img width="600" alt="twitter-profile-cards" src="https://user-images.githubusercontent.com/43836584/105163736-a39a1a80-5b57-11eb-88e8-533724038390.png">
 

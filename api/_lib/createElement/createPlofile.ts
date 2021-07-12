@@ -1,8 +1,8 @@
 import { PersonalData } from "../getTwitterData";
-import { OptionalColor, Options } from "../parser";
-import { resetcss } from "./resetcss";
-import s from "./style";
-import h from "./tag";
+import { OptionalColor, OptionalMode, Options } from "../parser";
+import { resetcss } from "../utils/resetcss";
+import s from "../utils/style";
+import h from "../utils/tag";
 
 const getCss = (options: Options): string[] => {
   const height = 360;
@@ -15,33 +15,42 @@ const getCss = (options: Options): string[] => {
     purple: "#794bc4",
     orange: "#f45d22",
     green: "#17bf63",
+    white: "#fff",
     gradient: "linear-gradient(-45deg, #40e0d0, #41e081, #e0d041, #ff8c00, #ff0080, #d041e0)",
+  };
+
+  const mode: { [key in OptionalMode]: { color: string; bgColor: string } } = {
+    default: {
+      color: "#111",
+      bgColor: "#fff",
+    },
+    dark: {
+      color: "#fff",
+      bgColor: "#111",
+    },
+    darkBlue: {
+      color: "#fff",
+      bgColor: "#15202b",
+    },
   };
 
   return [
     resetcss(),
     s("html", { fontSize: "62.5%" }),
     s("body", {
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      background: `${color[options.color]}`,
       fontSize: "1.4rem",
       fontFamily: options.font,
     }),
     s("#root", {
       width: `${width}px`,
       height: `${height}px`,
-      padding: "10px",
     }),
     s("#wrapper", {
       position: "relative",
       height: "100%",
       width: "100%",
-      backgroundColor: "#fff",
-      borderRadius: "10px",
+      backgroundColor: `${mode[options.mode].bgColor}`,
+      color: `${mode[options.mode].color}`,
       overflow: "hidden",
     }),
     s("#header", {
@@ -77,15 +86,14 @@ const getCss = (options: Options): string[] => {
       width: "calc(100% - 60px)",
     }),
     s("#profile_name", {
-      color: "#111",
       fontSize: "2.8rem",
       fontWeight: "bold",
     }),
     s("#profile_id", {
-      marginTop: "0.4rem",
-      fontSize: "1.7rem",
+      marginTop: "0.5rem",
+      fontSize: "1.4rem",
       fontWeight: "100",
-      color: "#555",
+      opacity: "0.8",
     }),
     s("#profile_description", {
       marginTop: "0.5rem",
@@ -105,7 +113,7 @@ const getCss = (options: Options): string[] => {
   ];
 };
 
-export const createElement = async (personalData: PersonalData, options: Options) =>
+export const createPlofile = async (personalData: PersonalData, options: Options) =>
   h(
     "html",
     {},
