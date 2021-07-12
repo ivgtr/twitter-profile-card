@@ -85,6 +85,7 @@ const getCss = (options: Options): string[] => {
       top: "calc(33% + 110px)",
       width: "calc(100% - 120px)",
       overflow: "hidden",
+      paddingBottom: "1rem",
     }),
     s("#profile_name", {
       fontSize: "5.6rem",
