@@ -36,7 +36,7 @@ Use ?color=COLOR_NAME or ?bgColor=COLOR_NAME parameter like so :
 
 ### Multiple color mode
 
-Use ?color=COLOR_NAME parameter like so :
+Use ?mode=MODE_NAME parameter like so :
 
 ```md
 [![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=ivgtr&mode=dark)](https://twitter.com/twitter)
@@ -52,6 +52,17 @@ Use ?color=COLOR_NAME parameter like so :
 ##### Currently, the color changes only slightly.
 
 I'm not a designer so I'm hoping some of you can help me out.
+
+
+### Experimental Support
+
+##### Select font in [Google Fonts](https://fonts.google.com/).
+
+- Use `?font=FONT_NAME` parameter like so.
+
+default: `Noto Sans JP`
+
+
 
 ## Deploy on your own Vercel instance
 
