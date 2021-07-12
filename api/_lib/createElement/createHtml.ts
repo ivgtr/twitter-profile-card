@@ -1,6 +1,18 @@
 import s from "../utils/style";
 import h from "../utils/tag";
 
+const onClick = `
+async function onClick(e) {
+  const text = e.target.innerText
+  await navigator.clipboard.writeText(text);
+  alert("You just copied")
+}
+
+window.addEventListener("load", () => {
+  document.querySelectorAll("pre").forEach(target =>target.addEventListener('click', onClick))
+})
+`;
+
 const getCss = (): string[] => [
   s("html", { fontSize: "62.5%" }),
   s("body", {
@@ -73,7 +85,8 @@ export const createHtml = () =>
       }),
       h("meta", { name: "viewport", content: "width=device-width, initial-scale=1.0" }),
       h("title", {}, "Twitter Profile Card"),
-      h("style", {}, getCss().join("\n"))
+      h("style", {}, getCss().join("\n")),
+      h("script", { type: "text/javascript" }, onClick)
     ),
     h(
       "body",
@@ -132,7 +145,9 @@ export const createHtml = () =>
             h("p", {}, "You can copy-paste this into markdown content."),
             h(
               "div",
-              { class: "code" },
+              {
+                class: "code",
+              },
               h(
                 "pre",
                 {},
@@ -145,7 +160,7 @@ export const createHtml = () =>
           h(
             "section",
             {},
-            h("h2", { class: "bold" }, "Multiple color variations"),
+            h("h3", { class: "bold" }, "Multiple color variations"),
             h(
               "div",
               { class: "flex gap-1" },
@@ -217,7 +232,7 @@ export const createHtml = () =>
           h(
             "section",
             {},
-            h("h2", { class: "bold" }, "Multiple color mode"),
+            h("h3", { class: "bold" }, "Multiple color mode"),
             h(
               "div",
               { class: "flex gap-1" },
@@ -261,6 +276,58 @@ export const createHtml = () =>
                 "pre",
                 {},
                 `[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=ivgtr&mode=dark)](https://twitter.com/ivgtr)
+`
+              )
+            )
+          ),
+          h("div", { class: "mt-3" }),
+          h(
+            "section",
+            {},
+            h(
+              "h3",
+              { class: "bold" },
+              "Select font in ",
+              h(
+                "a",
+                { href: "https://fonts.google.com/", target: "_brank", rel: "noopener noreferrer" },
+                "Google Fonts"
+              ),
+              "."
+            ),
+            h(
+              "div",
+              { class: "flex gap-1" },
+              h(
+                "div",
+                { class: "wrap" },
+                h("img", {
+                  src: "/api?id=ivgtr&font=New+Tegomin",
+                  height: "360",
+                  width: "480",
+                  loading: "lazy",
+                })
+              ),
+              h(
+                "div",
+                { class: "wrap" },
+                h("img", {
+                  src: "/api?id=ivgtr&font=Reggae+One",
+                  height: "360",
+                  width: "480",
+                  loading: "lazy",
+                })
+              )
+            ),
+
+            h("p", {}, "default: ", h("span", { class: "mark" }, "Noto Sans JP")),
+            h(
+              "div",
+              { class: "code" },
+              h(
+                "pre",
+                {},
+                `[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=ivgtr&font=Reggae+One)](https://twitter.com/ivgtr)
 `
               )
             )
