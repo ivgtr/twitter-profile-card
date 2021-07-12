@@ -84,6 +84,35 @@ export const createHtml = () =>
         content: "IE=edge",
       }),
       h("meta", { name: "viewport", content: "width=device-width, initial-scale=1.0" }),
+      h("meta", { name: "og:title", content: "Twitter Profile Card" }),
+      h("meta", {
+        name: "og:description",
+        content: "Get dynamically generated Twitter Profile on your readmes!",
+      }),
+      h("meta", {
+        name: "og:type",
+        content: "website",
+      }),
+      h("meta", {
+        name: "og:url",
+        content: "https://twitter-profile-card.vercel.app/api",
+      }),
+      h("meta", {
+        name: "og:site_name",
+        content: "Twitter Profile Card",
+      }),
+      h("meta", {
+        name: "og:image",
+        content: "https://twitter-profile-card.vercel.app/api?id=twitter",
+      }),
+      h("meta", {
+        name: "twitter:card",
+        content: "summary_large_image",
+      }),
+      h("meta", {
+        name: "twitter:creator",
+        content: "@ivgtr",
+      }),
       h("title", {}, "Twitter Profile Card"),
       h("style", {}, getCss().join("\n")),
       h("script", { type: "text/javascript" }, onClick)

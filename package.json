@@ -1,5 +1,6 @@
 {
   "name": "twitter-profile-card",
+  "description": "Get dynamically generated Twitter Profile on your readmes!",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
