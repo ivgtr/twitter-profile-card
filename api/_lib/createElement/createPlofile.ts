@@ -84,10 +84,14 @@ const getCss = (options: Options): string[] => {
       left: "5%",
       top: "calc(33% + 55px)",
       width: "calc(100% - 60px)",
+      overflow: "hidden",
     }),
     s("#profile_name", {
       fontSize: "2.8rem",
       fontWeight: "bold",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
     }),
     s("#profile_id", {
       marginTop: "0.5rem",
@@ -108,7 +112,10 @@ const getCss = (options: Options): string[] => {
     }),
     s("#profile_data", {
       fontSize: "1.3rem",
-      marginBottom: "5px",
+      marginBottom: "3px",
+    }),
+    s("#profile_link", {
+      color: `${color[options.color]}`,
     }),
   ];
 };
@@ -153,11 +160,10 @@ export const createPlofile = async (personalData: PersonalData, options: Options
               id: "header",
             },
             h("img", {
-              src: personalData.banner_url ?? "",
+              src: `${personalData.banner_url}/1500x500` ?? "",
               alt: "header_image",
-
-              height: "100px",
-              width: "300px",
+              height: "100",
+              width: "300",
               id: "header_image",
             })
           ),
@@ -170,10 +176,10 @@ export const createPlofile = async (personalData: PersonalData, options: Options
               "div",
               { id: "icon_wrapper" },
               h("img", {
-                src: personalData.image_url,
+                src: personalData.image_url.replace(/_normal/, ""),
                 alt: "icon image",
-                height: "120px",
-                width: "120px",
+                height: "120",
+                width: "120",
                 id: "icon_image",
               })
             )
@@ -190,6 +196,18 @@ export const createPlofile = async (personalData: PersonalData, options: Options
                   "p",
                   { id: "profile_description" },
                   personalData.description
+                    .replace(
+                      /https?:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#\u3000-\u30FE\u4E00-\u9FA0\uFF01-\uFFE3]+/gm,
+                      (url) => `<span id="profile_link">${url}</span>`
+                    )
+                    .replace(
+                      /[@＠][A-Za-z0-9._-]+/gm,
+                      (account) => `<span id="profile_link">${account}</span>`
+                    )
+                    .replace(
+                      /[#＃][a-zA-Z0-9\u3000-\u30FE\u4E00-\u9FA0\uFF01-\uFFE3]+/gm,
+                      (hashtag) => `<span id="profile_link">${hashtag}</span>`
+                    )
                     .split("\n")
                     .map((str, index) => (index < 7 ? `${str}<br />` : ""))
                     .join("")
