@@ -32,7 +32,7 @@ const getCss = (): string[] => [
     width: "320px",
     borderRadius: "5px",
     overflow: "hidden",
-    filter: "drop-shadow(0 0 0.5rem gray)",
+    filter: "drop-shadow(0 0 0.5rem #ccc)",
   }),
   s(".wrap img", { height: "100%", width: "100%", borderRadius: "5px", objectFit: "cover" }),
   s(".code pre", {
@@ -163,7 +163,7 @@ export const createHtml = () =>
                 "div",
                 { class: "wrap" },
                 h("img", {
-                  src: "/api?id=ivgtr&color=gradient",
+                  src: "/api?id=ivgtr&bgColor=gradient",
                   height: "360",
                   width: "480",
                   loading: "lazy",
@@ -198,7 +198,17 @@ export const createHtml = () =>
               h(
                 "pre",
                 {},
-                `[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=ivgtr&color=gradient)](https://twitter.com/ivgtr)
+                `[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=ivgtr&color=pink)](https://twitter.com/ivgtr)
+`
+              )
+            ),
+            h(
+              "div",
+              { class: "code" },
+              h(
+                "pre",
+                {},
+                `[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=ivgtr&bgColor=gradient)](https://twitter.com/ivgtr)
 `
               )
             )
@@ -233,12 +243,12 @@ export const createHtml = () =>
               )
             ),
 
-            h("p", {}, "default: ", h("span", { class: "mark" }, "default")),
+            h("p", {}, "default: ", h("span", { class: "mark" }, "normal")),
             h(
               "p",
               {},
               "Support: ",
-              h("span", { class: "mark" }, "default"),
+              h("span", { class: "mark" }, "normal"),
               " | ",
               h("span", { class: "mark" }, "dark"),
               " | ",
