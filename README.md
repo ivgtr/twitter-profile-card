@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="400" alt="twitter-profile-card-default" src="https://user-images.githubusercontent.com/43836584/105163007-b19b6b80-5b56-11eb-857e-e8b9072a42b6.png">
+  <img width="400" alt="twitter-profile-card-default" src="https://user-images.githubusercontent.com/43836584/125265492-db805e80-e33f-11eb-8250-9fc71283b95f.png">
   <h3 align="center">Twitter Profile Card</h3>
   <p align="center">Get dynamically generated Twitter Profile on your readmes!</p>
 </div>
@@ -13,22 +13,41 @@ Copy-paste this into your markdown content, and that's it. Simple!
 Change the ?id= value to your Twitter's screen_name.
 
 ```md
-[![Twitter Profile](https://twitter-profile-card.vercel.app/api?id=twitter)](https://twitter.com/twitter)
+[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=twitter)](https://twitter.com/twitter)
 ```
 
-## Color themes
+### Multiple color variations
+
+Use ?color=COLOR_NAME or ?bgColor=COLOR_NAME parameter like so :
+
+```md
+[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=twitter&color=pink)](https://twitter.com/twitter)
+```
+
+```md
+[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=twitter&bgColor=gradient)](https://twitter.com/twitter)
+```
+
+##### All inbuilt color variations :
+
+`blue`, `yellow`, `pink`. `purple`, `orange`, `green`, `white`, `gradient`
+
+<img width="600" src="https://user-images.githubusercontent.com/43836584/125265862-3619ba80-e340-11eb-877a-af7a1c2b0ab4.png">
+
+### Multiple color mode
 
 Use ?color=COLOR_NAME parameter like so :
 
 ```md
-[![Twitter Profile](https://twitter-profile-card.vercel.app/api?id=twitter&color=pink)](https://twitter.com/twitter)
+[![Twitter Profile Card](https://twitter-profile-card.vercel.app/api?id=ivgtr&mode=dark)](https://twitter.com/twitter)
 ```
 
-##### All inbuilt color themes :
+##### All inbuilt color modes :
 
-`default`, `yellow`, `pink`. `purple`, `orange`, `green`, `gradient`
+`normal`, `dark`, `darkBlue`
 
-<img width="600" alt="twitter-profile-cards" src="https://user-images.githubusercontent.com/43836584/105163736-a39a1a80-5b57-11eb-88e8-533724038390.png">
+<img width="600" src="https://user-images.githubusercontent.com/43836584/125266150-7da04680-e340-11eb-874c-fe5cfafc7653.png">
+
 
 ##### Currently, the color changes only slightly.
 

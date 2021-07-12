@@ -40,7 +40,7 @@ export const requestTwitter = async (id: string): Promise<PersonalData> => {
     .then((result) => result);
 
   return {
-    image_url: profile_image_url_https.replace("_normal", ""),
+    image_url: profile_image_url_https,
     banner_url:
       profile_banner_url ?? "https://pbs.twimg.com/profile_banners/1349597520930881537/1614820019",
     name,

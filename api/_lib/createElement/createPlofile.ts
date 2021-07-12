@@ -1,12 +1,12 @@
 import { PersonalData } from "../getTwitterData";
-import { OptionalColor, Options } from "../parser";
-import { resetcss } from "./resetcss";
-import s from "./style";
-import h from "./tag";
+import { OptionalColor, OptionalMode, Options } from "../parser";
+import { resetcss } from "../utils/resetcss";
+import s from "../utils/style";
+import h from "../utils/tag";
 
 const getCss = (options: Options): string[] => {
-  const height = 360;
-  const width = 480;
+  const height = 720;
+  const width = 960;
 
   const color: { [key in OptionalColor]: string } = {
     blue: "#1b95e0",
@@ -15,33 +15,42 @@ const getCss = (options: Options): string[] => {
     purple: "#794bc4",
     orange: "#f45d22",
     green: "#17bf63",
+    white: "#fff",
     gradient: "linear-gradient(-45deg, #40e0d0, #41e081, #e0d041, #ff8c00, #ff0080, #d041e0)",
+  };
+
+  const mode: { [key in OptionalMode]: { color: string; bgColor: string } } = {
+    normal: {
+      color: "#333",
+      bgColor: "#fff",
+    },
+    dark: {
+      color: "#fff",
+      bgColor: "#111",
+    },
+    darkBlue: {
+      color: "#fff",
+      bgColor: "#15202b",
+    },
   };
 
   return [
     resetcss(),
     s("html", { fontSize: "62.5%" }),
     s("body", {
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      background: `${color[options.color]}`,
-      fontSize: "1.4rem",
+      fontSize: "2.8rem",
       fontFamily: options.font,
     }),
     s("#root", {
       width: `${width}px`,
       height: `${height}px`,
-      padding: "10px",
     }),
     s("#wrapper", {
       position: "relative",
       height: "100%",
       width: "100%",
-      backgroundColor: "#fff",
-      borderRadius: "10px",
+      backgroundColor: `${mode[options.mode].bgColor}`,
+      color: `${mode[options.mode].color}`,
       overflow: "hidden",
     }),
     s("#header", {
@@ -54,18 +63,18 @@ const getCss = (options: Options): string[] => {
     s("#icon", {
       position: "absolute",
       left: "5%",
-      top: "calc(33% - 50px)",
+      top: "calc(33% - 100px)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      height: "100px",
-      width: "100px",
+      height: "200px",
+      width: "200px",
       borderRadius: "50%",
-      background: `${color[options.color]}`,
+      background: `${options.bgColor ? color[options.bgColor] : mode[options.mode].bgColor}`,
     }),
     s("#icon_wrapper", {
-      height: "90px",
-      width: "90px",
+      height: "180px",
+      width: "180px",
       borderRadius: "50%",
       overflow: "hidden",
     }),
@@ -73,39 +82,58 @@ const getCss = (options: Options): string[] => {
     s("#profile", {
       position: "absolute",
       left: "5%",
-      top: "calc(33% + 55px)",
-      width: "calc(100% - 60px)",
+      top: "calc(33% + 110px)",
+      width: "calc(100% - 120px)",
+      overflow: "hidden",
     }),
     s("#profile_name", {
-      color: "#111",
-      fontSize: "2.8rem",
+      fontSize: "5.6rem",
       fontWeight: "bold",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      paddingBottom: "1rem",
     }),
     s("#profile_id", {
-      marginTop: "0.4rem",
-      fontSize: "1.7rem",
+      marginTop: "-0.5rem",
+      fontSize: "2.8rem",
       fontWeight: "100",
-      color: "#555",
+      opacity: "0.8",
     }),
     s("#profile_description", {
       marginTop: "0.5rem",
-      fontSize: "1.3rem",
+      fontSize: "2.6rem",
       lineHeight: "1.2em",
     }),
     s("#profile_bottom", {
       position: "absolute",
       left: "5%",
-      bottom: "10px",
+      bottom: "2rem",
       whiteSpace: "nowrap",
     }),
     s("#profile_data", {
-      fontSize: "1.3rem",
-      marginBottom: "5px",
+      fontSize: "2.6rem",
+      marginBottom: "0.6rem",
+    }),
+    s(
+      "#text_link",
+      options.color === "gradient"
+        ? {
+            background: color[options.color],
+            "-webkit-background-clip": "text",
+            "-webkit-text-fill-color": "transparent",
+          }
+        : {
+            color: `${color[options.color]}`,
+          }
+    ),
+    s("#text_bold", {
+      fontWeight: "bold",
     }),
   ];
 };
 
-export const createElement = async (personalData: PersonalData, options: Options) =>
+export const createPlofile = async (personalData: PersonalData, options: Options) =>
   h(
     "html",
     {},
@@ -145,11 +173,10 @@ export const createElement = async (personalData: PersonalData, options: Options
               id: "header",
             },
             h("img", {
-              src: personalData.banner_url ?? "",
+              src: `${personalData.banner_url}/1500x500` ?? "",
               alt: "header_image",
-
-              height: "100px",
-              width: "300px",
+              height: "100",
+              width: "300",
               id: "header_image",
             })
           ),
@@ -162,10 +189,10 @@ export const createElement = async (personalData: PersonalData, options: Options
               "div",
               { id: "icon_wrapper" },
               h("img", {
-                src: personalData.image_url,
+                src: personalData.image_url.replace(/_normal/, ""),
                 alt: "icon image",
-                height: "120px",
-                width: "120px",
+                height: "120",
+                width: "120",
                 id: "icon_image",
               })
             )
@@ -182,6 +209,18 @@ export const createElement = async (personalData: PersonalData, options: Options
                   "p",
                   { id: "profile_description" },
                   personalData.description
+                    .replace(
+                      /https?:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#\u3000-\u30FE\u4E00-\u9FA0\uFF01-\uFFE3]+/gm,
+                      (url) => `<span id="text_link">${url}</span>`
+                    )
+                    .replace(
+                      /[@＠][A-Za-z0-9._-]+/gm,
+                      (account) => `<span id="text_link">${account}</span>`
+                    )
+                    .replace(
+                      /[#＃][a-zA-Z0-9\u3000-\u30FE\u4E00-\u9FA0\uFF01-\uFFE3]+/gm,
+                      (hashtag) => `<span id="text_link">${hashtag}</span>`
+                    )
                     .split("\n")
                     .map((str, index) => (index < 7 ? `${str}<br />` : ""))
                     .join("")
@@ -192,12 +231,20 @@ export const createElement = async (personalData: PersonalData, options: Options
             "div",
             { id: "profile_bottom" },
             personalData.location
-              ? h("p", { id: "profile_data" }, `location:${personalData.location}`)
+              ? h(
+                  "p",
+                  { id: "profile_data" },
+                  `location: ${h("span", { id: "text_bold" }, personalData.location)}`
+                )
               : "",
             h(
               "p",
               { id: "profile_data" },
-              `follows:${personalData.friends_count} / followers:${personalData.followers_count}`
+              `follows: ${h(
+                "span",
+                { id: "text_bold" },
+                `${personalData.friends_count}`
+              )} / followers: ${h("span", { id: "text_bold" }, `${personalData.followers_count}`)}`
             )
           )
         )
